@@ -8,7 +8,7 @@ import java.time.LocalTime;
 
 @Data
 public class Concert {
-    private int concertId;
+    private Long concertId;
     private String title;
     private String venue;
     private LocalDate concertDate;
