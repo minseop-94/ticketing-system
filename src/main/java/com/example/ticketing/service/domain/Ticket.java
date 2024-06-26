@@ -11,7 +11,7 @@ public class Ticket {
     private Long concertId;
     private String seatNumber;
     private LocalDateTime ticketingDate;
-    private String status;
+    private boolean status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

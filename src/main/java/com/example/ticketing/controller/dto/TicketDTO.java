@@ -17,5 +17,5 @@ public class TicketDTO {
     private Long concertId;
     private String seatNumber;
     private LocalDateTime ticketingDate;
-    private String status;
+    private boolean status;
 }

@@ -11,7 +11,7 @@ public class TicketMapper {
                 .concertId(ticket.getConcertId())
                 .seatNumber(ticket.getSeatNumber())
                 .ticketingDate(ticket.getTicketingDate())
-                .status(ticket.getStatus())
+                .status(ticket.isStatus())
                 .build();
     }
 }

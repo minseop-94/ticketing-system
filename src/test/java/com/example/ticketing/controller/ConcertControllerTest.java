@@ -77,16 +77,17 @@ class ConcertControllerTest {
         assertThat(actualConcerts).isEqualTo(expectedConcertList);
     }
 
-    @Test
-    void checkTicketingSuccess() throws Exception {
-        // given
-        Long userId = 1L;
-        Boolean expectedResult = true;
 
-        // when then
-        mockMvc.perform(get("/concerts/application/{userId}", userId)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$").value(expectedResult));
-    }
+//    @Test
+//    void checkTicketingSuccess() throws Exception {
+//        // given
+//        Long userId = 1L;
+//        Boolean expectedResult = true;
+//
+//        // when then
+//        mockMvc.perform(get("/concerts/application/{userId}", userId)
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$").value(expectedResult));
+//    }
 }

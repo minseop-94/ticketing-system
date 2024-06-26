@@ -53,17 +53,4 @@ public class ConcertController {
         return ResponseEntity.ok().body(concertService.getConcertList());
     }
 
-    /*
-    * TODO - (기본) 특강 신청 완료 여부 조회 API GET /concerts/application/{userId}
-    * - 특정 userId 로 특강 신청 완료 여부를 조회하는 API 를 작성합니다.
-    * - 특강 신청에 성공한 사용자는 성공했음을, 특강 등록자 명단에 없는 사용자는 실패했음을 반환합니다. (true, false)
-    * */
-
-    @GetMapping("/application/{userId}")
-    public ResponseEntity<Boolean> checkTicketingSuccess (
-            @PathVariable(name = "userId") Long userId
-    ) {
-        return ResponseEntity.ok().body(true);
-    }
-
 }
