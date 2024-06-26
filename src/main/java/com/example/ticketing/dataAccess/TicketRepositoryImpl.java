@@ -1,15 +1,26 @@
 package com.example.ticketing.dataAccess;
 
-import com.example.ticketing.service.domain.Ticket;
+import com.example.ticketing.dataAccess.entity.TicketEntity;
+import com.example.ticketing.dataAccess.orm.TicketJpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
+@Repository
 public class TicketRepositoryImpl implements TicketRepository{
+
+    @Autowired
+    private TicketJpaRepository ticketJpaRepository;
+
     @Override
-    public Ticket findTicketByUserIdConcertId(Long userId, Long concertId) {
-        return null;
+    public Optional<TicketEntity> findTicketByUserIdConcertId(Long userId, Long concertId) {
+        return Optional.ofNullable(ticketJpaRepository.findByUserIdAndConcertId(userId, concertId));
+
     }
 
     @Override
-    public Ticket save(Ticket ticket) {
-        return null;
+    public TicketEntity save(TicketEntity ticket) {
+        return ticketJpaRepository.save(ticket);
     }
 }

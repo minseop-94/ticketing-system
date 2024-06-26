@@ -20,7 +20,8 @@ public class ConcertService {
     public List<ConcertDTO> getConcertList() {
         // 그냥 조회 concert 있는거 다 List로 반환
 
-        List<Concert> concertList = concertRepository.findAll();
+        List<Concert> concertList = concertRepository.findAll()
+                .stream().map(ConcertMapper::toDomain).toList();
 
         return concertList.stream()
                 .map(ConcertMapper::toDTO)

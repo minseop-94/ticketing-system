@@ -3,15 +3,19 @@ package com.example.ticketing.service;
 import com.example.ticketing.controller.dto.TicketDTO;
 import com.example.ticketing.dataAccess.ConcertRepository;
 import com.example.ticketing.dataAccess.TicketRepository;
+import com.example.ticketing.dataAccess.entity.TicketEntity;
 import com.example.ticketing.handler.exception.NoSeatsAvailableException;
 import com.example.ticketing.handler.exception.NotExistTicketException;
 import com.example.ticketing.service.domain.Concert;
 import com.example.ticketing.service.domain.Ticket;
+import com.example.ticketing.service.mapper.ConcertMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,15 +35,15 @@ class TicketServiceTest {
         // given: 성공적인 티켓팅을 위한 조건 설정
         Long concertId = 1L;
         Long userId = 2L;
-        Ticket ticket = Ticket.builder()
+        TicketEntity ticket = TicketEntity.builder()
                 .userId(userId)
                 .concertId(concertId)
                 .seatNumber("F06").build();
         Concert concert = new Concert();
         concert.setConcertId(concertId);
         concert.setAvailableSeats(10); // 여유 좌석 설정
-        when(concertRepository.findConcertById(concertId)).thenReturn(concert);
-        when(ticketRepository.save(any(Ticket.class))).thenReturn(ticket);
+        when(concertRepository.findConcertById(concertId)).thenReturn(Optional.ofNullable(ConcertMapper.toEntity(concert)));
+        when(ticketRepository.save(any(TicketEntity.class))).thenReturn(ticket);
 
 
         // when: ticketingConcert 메서드 호출
@@ -63,7 +67,7 @@ class TicketServiceTest {
         Concert concert = new Concert();
         concert.setConcertId(concertId);
         concert.setAvailableSeats(0); // 여유 좌석 없음
-        when(concertRepository.findConcertById(concertId)).thenReturn(concert);
+        when(concertRepository.findConcertById(concertId)).thenReturn(Optional.ofNullable(ConcertMapper.toEntity(concert)));
 
         // when & then: NoSeatsAvailableException 발생 확인
         assertThrows(NoSeatsAvailableException.class, () -> ticketService.ticketingConcert(concertId, userId));
@@ -77,9 +81,9 @@ class TicketServiceTest {
         // Given
         Long userId = 1L;
         Long concertId = 1L;
-        Ticket ticket = new Ticket();
+        TicketEntity ticket = new TicketEntity();
         ticket.setStatus(true);
-        when(ticketRepository.findTicketByUserIdConcertId(userId, concertId)).thenReturn(ticket);
+        when(ticketRepository.findTicketByUserIdConcertId(userId, concertId)).thenReturn(Optional.of(ticket));
 
         // When
         Boolean result = ticketService.isTicketingSuccess(userId, concertId);
@@ -94,9 +98,9 @@ class TicketServiceTest {
         // Given
         Long userId = 1L;
         Long concertId = 1L;
-        Ticket ticket = new Ticket();
+        TicketEntity ticket = new TicketEntity();
         ticket.setStatus(false);
-        when(ticketRepository.findTicketByUserIdConcertId(userId, concertId)).thenReturn(ticket);
+        when(ticketRepository.findTicketByUserIdConcertId(userId, concertId)).thenReturn(Optional.of(ticket));
 
         // When
         Boolean result = ticketService.isTicketingSuccess(userId, concertId);

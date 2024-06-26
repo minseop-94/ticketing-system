@@ -39,9 +39,9 @@ class ConcertServiceTest {
     void getConcertList() {
         // given
         List<Concert> concertList = new ArrayList<>();
-        concertList.add(new Concert(1L, "콘서트1", "장소1", LocalDate.now(), LocalTime.now(), 100, 100, 10000, LocalDateTime.now(), LocalDateTime.now()));
-        concertList.add(new Concert(2L, "콘서트2", "장소2", LocalDate.now(), LocalTime.now(), 200, 200, 20000, LocalDateTime.now(), LocalDateTime.now()));
-        when(concertRepository.findAll()).thenReturn(concertList);
+        concertList.add(new Concert(1L, "콘서트1", "장소1", LocalDate.now(), LocalTime.now(), 100, 100, 10000));
+        concertList.add(new Concert(2L, "콘서트2", "장소2", LocalDate.now(), LocalTime.now(), 200, 200, 20000));
+        when(concertRepository.findAll()).thenReturn(concertList.stream().map(ConcertMapper::toEntity).toList());
 
         List<ConcertDTO> expectedConcertDTOList = concertList.stream()
             .map(ConcertMapper::toDTO)

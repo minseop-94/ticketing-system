@@ -1,6 +1,8 @@
 package com.example.ticketing.dataAccess.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
+@Builder
+@Data
 @Table(name = "concert")
 @EntityListeners(AuditingEntityListener.class) // Auditing 기능 활성화
 public class ConcertEntity {

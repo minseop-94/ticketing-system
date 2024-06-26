@@ -1,9 +1,11 @@
 package com.example.ticketing.dataAccess;
 
-import com.example.ticketing.service.domain.Ticket;
+import com.example.ticketing.dataAccess.entity.TicketEntity;
+
+import java.util.Optional;
 
 public interface TicketRepository {
-    Ticket findTicketByUserIdConcertId(Long userId, Long concertId);
+    Optional<TicketEntity> findTicketByUserIdConcertId(Long userId, Long concertId);
 
-    Ticket save(Ticket ticket);
+    TicketEntity save(TicketEntity ticket);
 }

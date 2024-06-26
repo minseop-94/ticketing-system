@@ -1,13 +1,22 @@
 package com.example.ticketing.dataAccess.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+
 @Entity
+@AllArgsConstructor
+@Builder
+@Data
+@NoArgsConstructor
 @Table(name = "ticket")
 @EntityListeners(AuditingEntityListener.class) // Auditing 기능 활성화
 public class TicketEntity {
