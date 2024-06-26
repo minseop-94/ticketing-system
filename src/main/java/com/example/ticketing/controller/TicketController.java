@@ -1,11 +1,9 @@
 package com.example.ticketing.controller;
 
+import com.example.ticketing.controller.dto.TicketDTO;
 import com.example.ticketing.service.TicketService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/tickets")
@@ -15,6 +13,25 @@ public class TicketController {
 
     public TicketController(TicketService ticketService) {
         this.ticketService = ticketService;
+    }
+
+    /*
+     * TODO - (핵심) 콘서트 신청 API POST /concerts/{id}/apply
+     * - 특정 userId 로 선착순으로 제공되는 특강을 신청하는 API 를 작성합니다.
+     * - 동일한 신청자는 한 번의 수강 신청만 성공할 수 있습니다.
+     * - 각 강의는 선착순 30명만 신청 가능합니다.
+     * - 이미 신청자가 30명이 초과되면 이후 신청자는 요청을 실패합니다.
+     * - 어떤 유저가 특강을 신청했는지 히스토리를 저장해야한다.
+     */
+    // Question(loso): 콘서트 티켓팅을 하는 기능이 뭘해야 RESTful 해지지? 현재는 계층 구조를 가지지 못함. 
+    @PostMapping("/{concertId}/apply")
+    public ResponseEntity<TicketDTO> bookConcert(
+            @PathVariable Long concertId,
+            @RequestBody Long userId
+    ) {
+
+//        return ResponseEntity.ok().body(new TicketDTO());
+        return ResponseEntity.ok().body(ticketService.ticketingConcert(concertId, userId));
     }
 
 

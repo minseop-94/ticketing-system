@@ -13,19 +13,9 @@ import java.util.List;
 public class ConcertService {
     private ConcertRepository concertRepository;
 
-
-    public TicketDTO ticketingConcert(Long concertId, Long userId) {
-        // concert 여유 좌석이 있는지 호회
-
-        // 여유 좌석이 있다면
-
-        // 여유 좌석이 없다면 throw exception
-
-//        return TicketMapper.toDTO(new Ticket());
-        return new TicketDTO();
-
+    public ConcertService(ConcertRepository concertRepository) {
+        this.concertRepository = concertRepository;
     }
-
 
     public List<Concert> getConcertList() {
         // 그냥 조회 concert 있는거 다 List로 반환

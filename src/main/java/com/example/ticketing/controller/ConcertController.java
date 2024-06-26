@@ -20,25 +20,6 @@ public class ConcertController {
     }
 
     /*
-     * TODO - (핵심) 콘서트 신청 API POST /concerts/{id}/apply
-     * - 특정 userId 로 선착순으로 제공되는 특강을 신청하는 API 를 작성합니다.
-     * - 동일한 신청자는 한 번의 수강 신청만 성공할 수 있습니다.
-     * - 각 강의는 선착순 30명만 신청 가능합니다.
-     * - 이미 신청자가 30명이 초과되면 이후 신청자는 요청을 실패합니다.
-     * - 어떤 유저가 특강을 신청했는지 히스토리를 저장해야한다.
-     */
-    @PostMapping("/{concertId}/apply")
-    public ResponseEntity<TicketDTO> bookConcert(
-            @PathVariable Long concertId,
-            @RequestBody Long userId
-    ) {
-
-//        return ResponseEntity.ok().body(new TicketDTO());
-        return ResponseEntity.ok().body(concertService.ticketingConcert(concertId, userId));
-    }
-
-
-    /*
     *  TODO - (기본) 콘서트 목록 API GET /concerts
     * - 단 한번의 특강을 위한 것이 아닌 날짜별로 특강이 존재할 수 있는 범용적인 서비스로 변화시켜 봅니다.
     * - 이를 수용하기 위해, 특강 엔티티의 경우 기본 과제 SPEC 을 만족하는 설계에서 변경되어야 할 수 있습니다.
