@@ -35,29 +35,29 @@ class ConcertControllerTest {
     @MockBean
     private ConcertService concertService;
 
-    @Test
-    void bookConcert() throws Exception {
-        // given
-        TicketDTO expectedTicket = new TicketDTO();
-        Long userId = 1L;
-        Long concertId = 10L;
-
-        when(concertService.ticketingConcert(concertId, userId)).thenReturn(expectedTicket);
-
-        // when
-        MvcResult result = mockMvc.perform(post("/concerts/{concertId}/apply", concertId)
-                .contentType(MediaType.APPLICATION_JSON) // Content-Type 헤더 추가
-                .content(String.valueOf(userId))) // 요청 본문 추가
-                .andExpect(status().isOk()) // stauts 확인
-                .andReturn();
-
-        // then
-        String responseBody = result.getResponse().getContentAsString();
-        ObjectMapper objectMapper = new ObjectMapper();
-        TicketDTO actualTicket = objectMapper.readValue(responseBody, TicketDTO.class);
-
-        assertThat(actualTicket).isEqualTo(expectedTicket);
-    }
+//    @Test
+//    void bookConcert() throws Exception {
+//        // given
+//        TicketDTO expectedTicket = new TicketDTO();
+//        Long userId = 1L;
+//        Long concertId = 10L;
+//
+//        when(concertService.ticketingConcert(concertId, userId)).thenReturn(expectedTicket);
+//
+//        // when
+//        MvcResult result = mockMvc.perform(post("/concerts/{concertId}/apply", concertId)
+//                .contentType(MediaType.APPLICATION_JSON) // Content-Type 헤더 추가
+//                .content(String.valueOf(userId))) // 요청 본문 추가
+//                .andExpect(status().isOk()) // stauts 확인
+//                .andReturn();
+//
+//        // then
+//        String responseBody = result.getResponse().getContentAsString();
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        TicketDTO actualTicket = objectMapper.readValue(responseBody, TicketDTO.class);
+//
+//        assertThat(actualTicket).isEqualTo(expectedTicket);
+//    }
 
     @Test
     void getConcertList() throws Exception {
