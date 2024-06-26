@@ -1,6 +1,7 @@
 package com.example.ticketing.service;
 
 import com.example.ticketing.controller.dto.ConcertDTO;
+import com.example.ticketing.dataAccess.ConcertRepository;
 import com.example.ticketing.service.domain.Concert;
 import com.example.ticketing.service.mapper.ConcertMapper;
 import org.springframework.stereotype.Service;

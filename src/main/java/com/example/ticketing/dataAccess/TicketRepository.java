@@ -1,4 +1,4 @@
-package com.example.ticketing.service;
+package com.example.ticketing.dataAccess;
 
 import com.example.ticketing.service.domain.Ticket;
 

@@ -1,6 +1,8 @@
 package com.example.ticketing.service;
 
 import com.example.ticketing.controller.dto.TicketDTO;
+import com.example.ticketing.dataAccess.ConcertRepository;
+import com.example.ticketing.dataAccess.TicketRepository;
 import com.example.ticketing.handler.exception.NoSeatsAvailableException;
 import com.example.ticketing.handler.exception.NotExistTicketException;
 import com.example.ticketing.service.domain.Concert;

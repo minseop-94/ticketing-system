@@ -1,14 +1,13 @@
 package com.example.ticketing.service;
 
 import com.example.ticketing.controller.dto.ConcertDTO;
+import com.example.ticketing.dataAccess.ConcertRepository;
 import com.example.ticketing.service.domain.Concert;
 import com.example.ticketing.service.mapper.ConcertMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
@@ -19,7 +18,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 // Mockito 사용시, MockitoAnnotations.openMocks(this) 호출해서 Mockito 어노테이션 초기화 필요 
