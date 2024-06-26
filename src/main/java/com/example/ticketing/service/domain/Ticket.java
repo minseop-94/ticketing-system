@@ -18,6 +18,4 @@ public class Ticket {
     private String seatNumber;
     private LocalDateTime ticketingDate;
     private boolean status;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }

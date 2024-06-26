@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ticketing-system
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+
+#spring.h2.console.enabled는 H2 콘솔을 활성화하는 설정입니다. 개발 환경에서 유용하지만, 운영 환경에서는 보안상 비활성화해야 합니다.
+#spring.jpa.hibernate.ddl-auto는 데이터베이스 스키마 자동 생성 및 삭제 옵션입니다.
+#    create-drop은 애플리케이션 실행 시 테이블을 생성하고 종료 시 삭제합니다. 개발 환경에서는 유용하지만, 운영 환경에서는 update 또는 none으로 변경해야 합니다.

@@ -20,6 +20,4 @@ public class Concert {
     private int totalSeats;
     private int availableSeats;
     private int price;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }
