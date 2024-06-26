@@ -10,4 +10,5 @@ public interface ConcertRepository {
 
     Concert findConcertById(Long concertId);
     List<Concert> findAll();
+    Concert save(Concert concert);
 }
