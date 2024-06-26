@@ -1,6 +1,7 @@
 package com.example.ticketing.handler;
 
 import com.example.ticketing.handler.exception.ErrorResponse;
+import com.example.ticketing.handler.exception.NoSeatsAvailableException;
 import com.example.ticketing.handler.exception.NotExistTicketException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+    // TODO(loso): 에러 코드를 다르게 구분하기.
+
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
         return ResponseEntity.status(500).body(ErrorResponse.of("500", "에러가 발생했습니다: " + e));
@@ -30,6 +33,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotExistTicketException.class)
     public ResponseEntity<ErrorResponse> handleNotExistTicketException(NotExistTicketException ex) {
+        return ResponseEntity.badRequest().body(ErrorResponse.of("400", ex.getMessage()));
+    }
+
+    @ExceptionHandler(NoSeatsAvailableException.class)
+    public ResponseEntity<ErrorResponse> handleNoSeatsAvailableException(NoSeatsAvailableException ex) {
         return ResponseEntity.badRequest().body(ErrorResponse.of("400", ex.getMessage()));
     }
 }
