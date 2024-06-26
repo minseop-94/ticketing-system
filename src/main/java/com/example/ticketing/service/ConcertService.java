@@ -1,13 +1,12 @@
 package com.example.ticketing.service;
 
-import com.example.ticketing.controller.dto.TicketDTO;
+import com.example.ticketing.controller.dto.ConcertDTO;
 import com.example.ticketing.service.domain.Concert;
-import com.example.ticketing.service.domain.Ticket;
-import com.example.ticketing.service.mapper.TicketMapper;
+import com.example.ticketing.service.mapper.ConcertMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ConcertService {
@@ -17,9 +16,13 @@ public class ConcertService {
         this.concertRepository = concertRepository;
     }
 
-    public List<Concert> getConcertList() {
+    public List<ConcertDTO> getConcertList() {
         // 그냥 조회 concert 있는거 다 List로 반환
 
-        return new ArrayList<Concert>();
+        List<Concert> concertList = concertRepository.findAll();
+
+        return concertList.stream()
+                .map(ConcertMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }

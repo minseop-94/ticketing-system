@@ -1,5 +1,6 @@
 package com.example.ticketing.controller;
 
+import com.example.ticketing.controller.dto.ConcertDTO;
 import com.example.ticketing.controller.dto.TicketDTO;
 import com.example.ticketing.service.domain.Concert;
 import com.example.ticketing.service.domain.Ticket;
@@ -28,7 +29,7 @@ public class ConcertController {
     * - 추가로 정원이 특강마다 다르다면 어떻게 처리할것인가..? 고민해 보셔라~
     */
     @GetMapping()
-    public ResponseEntity<List<Concert>> getConcertList() {
+    public ResponseEntity<List<ConcertDTO>> getConcertList() {
 
 
         return ResponseEntity.ok().body(concertService.getConcertList());
