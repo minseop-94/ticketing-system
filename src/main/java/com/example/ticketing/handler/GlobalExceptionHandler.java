@@ -1,6 +1,6 @@
 package com.example.ticketing.handler;
 
-import com.example.ticketing.model.exception.ErrorResponse;
+import com.example.ticketing.handler.exception.ErrorResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

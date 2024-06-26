@@ -1,4 +1,4 @@
-package com.example.ticketing.model.domain;
+package com.example.ticketing.service.domain;
 
 import lombok.Data;
 import org.springframework.cglib.core.Local;

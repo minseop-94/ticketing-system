@@ -1,4 +1,4 @@
-package com.example.ticketing.model.dto;
+package com.example.ticketing.controller.dto;
 
 import lombok.Data;
 

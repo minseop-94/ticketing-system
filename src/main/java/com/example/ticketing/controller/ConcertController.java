@@ -1,8 +1,9 @@
 package com.example.ticketing.controller;
 
-import com.example.ticketing.model.domain.Concert;
-import com.example.ticketing.model.domain.Ticket;
-import com.example.ticketing.model.dto.TicketingRequest;
+import com.example.ticketing.controller.dto.TicketDTO;
+import com.example.ticketing.service.domain.Concert;
+import com.example.ticketing.service.domain.Ticket;
+import com.example.ticketing.service.ConcertService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/concerts")
 public class ConcertController {
+
+    private ConcertService concertService;
+
+    public ConcertController(ConcertService concertService) {
+        this.concertService = concertService;
+    }
 
     /*
      * TODO - (핵심) 콘서트 신청 API POST /concerts/{id}/apply
@@ -21,14 +28,13 @@ public class ConcertController {
      * - 어떤 유저가 특강을 신청했는지 히스토리를 저장해야한다.
      */
     @PostMapping("/{concertId}/apply")
-    public ResponseEntity<Ticket> bookConcert(
-//            @PathVariable(name = "id") Long concertId,
+    public ResponseEntity<TicketDTO> bookConcert(
             @PathVariable Long concertId,
-
             @RequestBody Long userId
     ) {
 
-        return ResponseEntity.ok().body(new Ticket());
+//        return ResponseEntity.ok().body(new TicketDTO());
+        return ResponseEntity.ok().body(concertService.ticketingConcert(concertId, userId));
     }
 
 
@@ -44,7 +50,7 @@ public class ConcertController {
     public ResponseEntity<List<Concert>> getConcertList() {
 
 
-        return ResponseEntity.ok().body(List.of(new Concert()));
+        return ResponseEntity.ok().body(concertService.getConcertList());
     }
 
     /*
