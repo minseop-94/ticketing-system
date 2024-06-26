@@ -18,6 +18,7 @@ public class Concert {
     private LocalDate concertDate;
     private LocalTime concertTime;
     private int totalSeats;
+    private int availableSeats;
     private int price;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
