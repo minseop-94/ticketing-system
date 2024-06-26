@@ -50,7 +50,6 @@ public class TicketController {
             @PathVariable(name = "userId") Long userId,
             @PathVariable(name = "concertId") Long concertId
     ) {
-        // Question(loso): 예약 여부를 확인하는
         return ResponseEntity.ok().body(ticketService.isTicketingSuccess(userId, concertId));
     }
 }

@@ -1,6 +1,7 @@
 package com.example.ticketing.handler;
 
 import com.example.ticketing.handler.exception.ErrorResponse;
+import com.example.ticketing.handler.exception.NotExistTicketException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -24,6 +25,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         if (ex.getValue() == null) {
             throw new IllegalArgumentException("Parameter cannot be null");
         }
+        return ResponseEntity.badRequest().body(ErrorResponse.of("400", ex.getMessage()));
+    }
+
+    @ExceptionHandler(NotExistTicketException.class)
+    public ResponseEntity<ErrorResponse> handleNotExistTicketException(NotExistTicketException ex) {
         return ResponseEntity.badRequest().body(ErrorResponse.of("400", ex.getMessage()));
     }
 }
