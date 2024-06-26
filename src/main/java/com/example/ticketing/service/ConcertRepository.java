@@ -9,6 +9,5 @@ import java.util.List;
 public interface ConcertRepository {
 
     Concert findConcertById(Long concertId);
-    List<Concert> getALLConcerts = null;
-
+    List<Concert> findAll();
 }
