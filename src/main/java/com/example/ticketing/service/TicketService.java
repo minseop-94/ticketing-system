@@ -13,6 +13,8 @@ import com.example.ticketing.service.mapper.TicketMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class TicketService {
     private TicketRepository ticketRepository;
@@ -23,6 +25,20 @@ public class TicketService {
         Concert concert = concertRepository.findConcertById(concertId)
                 .map(ConcertMapper::toDomain)
                 .orElseThrow(() -> new EntityNotFoundException("Concert not found with id: " + concertId));
+
+        // 콘서트 티켓 예매 시간이 되었는지 확인
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        LocalDateTime concertStartDateTime = LocalDateTime.of(concert.getConcertDate(), concert.getConcertTime());
+        // 콘서트 예매 시작 시간과 현재 시간 비교
+        if (currentDateTime.isBefore(concertStartDateTime)) {
+            throw new IllegalStateException("티켓 예매 시간이 아직 되지 않았습니다.");
+        }
+
+        // 이미 등록한 유저인지 확인
+        boolean isAlreadyTicketing = ticketRepository.existsByUserIdAndConcertId(userId, concertId);
+        if (isAlreadyTicketing) {
+            throw new IllegalStateException("이미 예매한 콘서트입니다.");
+        }
 
         // 여유 좌석이 있다면
         if (concert.getAvailableSeats() > 0) {

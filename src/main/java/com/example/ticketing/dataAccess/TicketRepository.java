@@ -8,4 +8,6 @@ public interface TicketRepository {
     Optional<TicketEntity> findTicketByUserIdConcertId(Long userId, Long concertId);
 
     TicketEntity save(TicketEntity ticket);
+
+    boolean existsByUserIdAndConcertId(Long userId, Long concertId);
 }

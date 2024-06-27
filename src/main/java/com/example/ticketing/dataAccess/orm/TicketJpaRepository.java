@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface TicketJpaRepository extends JpaRepository<TicketEntity, Long> {
     TicketEntity findByUserIdAndConcertId(Long userId, Long concertId);
 
+    boolean existsByUserIdAndConcertId(Long userId, Long concertId);
+
 }

@@ -23,4 +23,9 @@ public class TicketRepositoryImpl implements TicketRepository{
     public TicketEntity save(TicketEntity ticket) {
         return ticketJpaRepository.save(ticket);
     }
+
+    @Override
+    public boolean existsByUserIdAndConcertId(Long userId, Long concertId) {
+        return ticketJpaRepository.existsByUserIdAndConcertId(userId, concertId);
+    }
 }
